@@ -1,9 +1,9 @@
-import React, {memo} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {useDispatch} from 'react-redux';
-import {setStoreState} from 'src/actions/appActions';
+import { useDispatch } from 'react-redux';
+import { setStoreState } from 'src/actions/appActions';
 import stylesSheet from './styles';
 
 function Settings({navigation}: {navigation: any}) {
@@ -30,7 +30,7 @@ function Settings({navigation}: {navigation: any}) {
             colors={['#ec4427', '#f37e33']}
             style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
             <TouchableOpacity style={stylesSheet.button} onPress={() => setHN()}>
-              <Text style={stylesSheet.buttonText}>{t('HÀ NỘI')}</Text>
+              <Text style={stylesSheet.buttonText}>{t('TIẾNG VIỆT')}</Text>
             </TouchableOpacity>
           </LinearGradient>
           <LinearGradient
@@ -39,7 +39,7 @@ function Settings({navigation}: {navigation: any}) {
             colors={['#ec4427', '#f37e33']}
             style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
             <TouchableOpacity style={stylesSheet.button} onPress={() => setHCM()}>
-              <Text style={stylesSheet.buttonText}>{t('HỒ CHÍ MINH')}</Text>
+              <Text style={stylesSheet.buttonText}>{t('ENGLISH')}</Text>
             </TouchableOpacity>
           </LinearGradient>
           <View style={stylesSheet.wrapKmakey}>

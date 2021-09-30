@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import {initReactI18next} from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 // tips: export each translation to a seperate file
 const resources = {
@@ -63,7 +63,9 @@ const resources = {
         'Xã hội đang trong thời kỳ 4.0, công nghệ thông tin phát triển. Trong có có ngành mật mã có sự quan trọng không hề nhỏ. Hiện nay ở Vệt Nam đã và đang có nhiều trường đại học đào tạo ngành kỹ thuật mật mã, trong đó có Học Viện Kỹ thuật mật mã. Nhưng nhiều người vẫn không biết học viện kỹ thuật mật mã ra làm gì hãy tìm hiểu nào.',
       postContent: 'Học viện Kỹ thuật mật mã tuyển sinh',
       buttonShare: 'Chia sẻ',
-      chooseGift: 'Chọn món quà của bạn',
+      chooseGift: 'Chọn món quà của bạn', // edit
+      login: 'Đăng nhập',
+      signup: 'Đăng ký',
     },
   },
 };

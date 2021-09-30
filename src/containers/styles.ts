@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 
 const stylesSheet = StyleSheet.create({
@@ -38,6 +38,11 @@ const stylesSheet = StyleSheet.create({
     width: '70%',
     marginTop: 32,
   },
+  linearGradientBtn: {
+    borderRadius: 100,
+    width: '45%',
+    marginTop: 30,
+  },
   linearGradientBottom: {
     borderRadius: 100,
     width: '70%',
@@ -47,7 +52,7 @@ const stylesSheet = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 10,
+    margin: 5,
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
@@ -74,6 +79,7 @@ const stylesSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 24,
+    marginBottom: 50,
   },
   imageLogo: {
     width: '40%',
@@ -85,6 +91,24 @@ const stylesSheet = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  input: {
+    height: 50,
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingLeft: 20,
+  },
+  wrapSocial: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 30,
+  },
+  wrapSignup: {
+    marginTop: 15,
+  },
+  textSignup: {
+    color: '#ec4427',
   },
 });
 
