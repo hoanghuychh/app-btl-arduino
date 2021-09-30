@@ -2,10 +2,17 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "29.0.2"
-        minSdkVersion = 16
-        compileSdkVersion = 29
-        targetSdkVersion = 29
+        android: {
+
+            buildToolsVersion = "29.0.2"
+            minSdkVersion = 16
+            compileSdkVersion = 29
+            targetSdkVersion = 29
+        }
+        firebase: {
+                // Override Firebase SDK Version
+                bom           : "28.3.1"
+    }
     }
     repositories {
         google()
