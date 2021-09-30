@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "797233054817",
+    "firebase_url": "https://arduno-ir-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "arduno-ir",
+    "storage_bucket": "arduno-ir.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797233054817:android:34b219fb63dd8e8c441620",
+        "android_client_info": {
+          "package_name": "com.arduinoremote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797233054817-qcig9dg6ovs664h9mvjq513thvmsnebb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arduinoremote",
+            "certificate_hash": "a999d45d216bc040cf4e5c78167fcda6f520a4b3"
+          }
+        },
+        {
+          "client_id": "797233054817-vg4ssbs7803uaaa5h8gv8pqgbekjsrs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBn6frXPWJ34K1C2I0si_td06P26lL5GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797233054817-vg4ssbs7803uaaa5h8gv8pqgbekjsrs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797233054817:android:37d42be16bb5b1f2441620",
+        "android_client_info": {
+          "package_name": "com.typescriptreactnativestarter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797233054817-vg4ssbs7803uaaa5h8gv8pqgbekjsrs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBn6frXPWJ34K1C2I0si_td06P26lL5GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797233054817-vg4ssbs7803uaaa5h8gv8pqgbekjsrs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

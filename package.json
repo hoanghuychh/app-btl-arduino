@@ -20,7 +20,8 @@
     "rename": "react-native-rename",
     "jetify": "npx jetify",
     "icon": "npx app-icon generate -i publishing/icon.png",
-    "splash": "npx generate-bootsplash"
+    "splash": "npx generate-bootsplash",
+    "pod": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",

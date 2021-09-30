@@ -1,4 +1,4 @@
-package com.typescriptreactnativestarter;
+package com.arduinoremote;
 
 import android.os.Bundle;
 
@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "TypescriptReactNativeStarter";
+    return "arduinoRemote";
   }
 
   @Override

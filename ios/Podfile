@@ -3,14 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'TypescriptReactNativeStarter' do
+target 'arduinoRemote' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'TypescriptReactNativeStarterTests' do
+  target 'arduinoRemoteTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -25,10 +25,10 @@ target 'TypescriptReactNativeStarter' do
   end
 end
 
-target 'TypescriptReactNativeStarter-tvOS' do
-  # Pods for TypescriptReactNativeStarter-tvOS
+target 'arduinoRemote-tvOS' do
+  # Pods for arduinoRemote-tvOS
 
-  target 'TypescriptReactNativeStarter-tvOSTests' do
+  target 'arduinoRemote-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
