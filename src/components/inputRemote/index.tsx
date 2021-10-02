@@ -14,6 +14,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { push } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
+import TopbarBack from '../componentBack';
 import stylesSheet from './styles';
 
 function InputRemote() {
@@ -40,6 +41,7 @@ function InputRemote() {
     <SafeAreaView style={stylesSheet.safeArea}>
       <ScrollView style={stylesSheet.scrollView}>
         <View style={stylesSheet.container}>
+          <TopbarBack />
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../../assets/logo.png')} />
           </View>

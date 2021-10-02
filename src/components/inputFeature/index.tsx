@@ -14,8 +14,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { push } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
+import TopbarBack from '../componentBack';
 import stylesSheet from './styles';
-
 function InputFeature(props) {
   console.log('chh_logInputFeature ---> props', props);
   const remote = props?.route?.params?.remote;
@@ -45,6 +45,7 @@ function InputFeature(props) {
     <SafeAreaView style={stylesSheet.safeArea}>
       <ScrollView style={stylesSheet.scrollView}>
         <View style={stylesSheet.container}>
+          <TopbarBack />
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../../assets/logo.png')} />
           </View>
