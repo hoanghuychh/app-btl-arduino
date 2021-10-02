@@ -1,4 +1,5 @@
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -29,23 +30,38 @@ function Home() {
   const onSignup = () => {
     auth()
       .createUserWithEmailAndPassword(username, password)
-      .then((e) => {
-        dispatch(setUser(e));
-        Alert.alert('', 'Đăng ký thành công', [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-        console.log('chh_log ---> User account created & signed in!');
-        push('HavePlan', {});
+      .then((e: any) => {
+        database()
+          .ref(`/users/${e?.user?._user?.uid}/`)
+          .set({
+            user_id: e?.user?._user?.uid,
+            email: e?.user?._user?.email,
+            displayName: e?.user?._user?.displayName,
+            phoneNumber: e?.user?._user?.phoneNumber,
+          })
+          .then(() => {
+            dispatch(setUser(e?.user?._user));
+            console.log('chh_log ---> User account created id record in database!');
+          })
+          .then(() => {
+            Alert.alert('', 'Đăng ký thành công', [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ]);
+            console.log('chh_log ---> User account created & signed in!');
+            // push('HavePlan', {});
+          });
       })
       .catch((error) => {
         if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+          Alert.alert('Đăng ký thất bại', 'That email address is already in use!', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
         }
-
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          Alert.alert('Đăng ký thất bại', 'That email address is invalid!', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
         }
-
         console.error(error);
       });
   };
@@ -58,15 +74,18 @@ function Home() {
         // push('HavePlan', {});
       })
       .catch((error) => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
+        if (error.code === 'auth/wrong-password') {
+          Alert.alert('Đăng nhập thất bại', 'Mật khẩu không chính xác!', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
+        } else if (error.code === 'auth/user-not-found') {
+          Alert.alert('Đăng nhập thất bại', 'Tài khoản chưa đăng ký!', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
+        } else
+          Alert.alert('Đăng nhập thất bại', error?.message, [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
       });
   };
 
