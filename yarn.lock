@@ -1563,6 +1563,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-12.8.0.tgz#e9e57e484116eb1d0c0234f69b63e8aaeb8d6ab8"
   integrity sha512-jD4kv0aC7YhAi18ZVlP0R4y/qpLoTGLxWtPo32TXQc/O54/QWUhQ1/g/PKuqD+4rXiC20vpns8eA/dkk3suPuw==
 
+"@react-native-firebase/database@^12.8.0":
+  version "12.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/database/-/database-12.8.0.tgz#f46550d59e2093c19dea2380cedfa9ad65727c9f"
+  integrity sha512-7OFr1cXEkiLWCEpU/d3OufUHAkPwrIctV9XggMqpmgAGoUkOl/aNBFJSqzTTIufwFaHx9HjQ4MWen4trO/J2Rw==
+
 "@react-navigation/bottom-tabs@^5.9.0":
   version "5.11.0"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.11.0.tgz#9796b2c6416405ff8d4fa45f8d8a5c5cee8a31dc"
