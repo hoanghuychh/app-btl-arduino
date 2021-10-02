@@ -1,15 +1,13 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import * as eva from '@eva-design/eva';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ApplicationProvider } from '@ui-kitten/components';
 import * as React from 'react';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import RNBootSplash from 'react-native-bootsplash';
 import Icon from 'react-native-easy-icon';
-
-import * as eva from '@eva-design/eva';
-import {ApplicationProvider} from '@ui-kitten/components';
-
-import StackNavigator from 'src/containers/StackNavigator';
 import Settings from 'src/containers/Settings';
-import {sleep} from './utils/async';
+import StackNavigator from 'src/containers/StackNavigator';
+import { sleep } from './utils/async';
 
 export type AppTabParamList = {
   Home: undefined;
@@ -33,7 +31,7 @@ const App = () => {
   const {t} = useTranslation();
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
-      <Tab.Navigator initialRouteName="settings">
+      <Tab.Navigator initialRouteName="home">
         <Tab.Screen
           name="home"
           component={StackNavigator}
@@ -47,6 +45,7 @@ const App = () => {
                 color={color}
               />
             ),
+            unmountOnBlur: true,
           }}
         />
         <Tab.Screen

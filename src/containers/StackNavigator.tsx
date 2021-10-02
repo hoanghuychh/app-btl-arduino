@@ -6,9 +6,9 @@ import ATTT from './ATTT';
 import ChooseGift from './ChooseGift';
 import Home from './Home';
 import Inevitable from './Inevitable';
-import IntroACT from './IntroACT';
 import ListDevices from './ListDevies';
 import ListFeatures from './ListFeatures';
+import SelectLang from './SelectLang';
 import Share from './Share';
 import Thanks from './Thanks';
 import ThanksIntroACT from './ThanksIntroACT';
@@ -31,7 +31,7 @@ const StackNavigator = () => {
           gestureEnabled: false,
         }}
       />
-      <Stack.Screen name="IntroACT" component={IntroACT} />
+      <Stack.Screen name="SelectLang" component={SelectLang} />
       <Stack.Screen name="Share" component={Share} />
       <Stack.Screen name="ChooseGift" component={ChooseGift} />
       <Stack.Screen name="Thanks2" component={ThanksIntroACT} />

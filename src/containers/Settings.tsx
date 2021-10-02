@@ -11,7 +11,6 @@ import stylesSheet from './styles';
 function Settings({navigation}: {navigation: any}) {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
-  console.log('chh_log ---> user', user?.uid)
   const dispatch = useDispatch();
   const setHCM = () => {
     dispatch(setStoreState({current: 'hcm'}));
@@ -26,6 +25,7 @@ function Settings({navigation}: {navigation: any}) {
       .signOut()
       .then(() => {
         dispatch(setUser({}));
+        navigation.navigate('home');
         console.log('User signed out!');
       });
   };
@@ -52,7 +52,7 @@ function Settings({navigation}: {navigation: any}) {
                 end={{x: 1, y: 0}}
                 colors={['#ec4427', '#f37e33']}
                 style={[stylesSheet.buttonMenu, {marginVertical: 20}]}>
-                <TouchableOpacity style={stylesSheet.button} onPress={() => setHN()}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => {}}>
                   <Text style={stylesSheet.buttonText}>{t('selectLang')}</Text>
                 </TouchableOpacity>
               </LinearGradient>

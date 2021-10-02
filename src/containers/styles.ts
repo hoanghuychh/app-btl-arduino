@@ -6,6 +6,11 @@ const stylesSheet = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: '100%',
   },
+  topbar: {
+    position: 'absolute',
+    top: 30,
+    left: 0,
+  },
   button: {
     paddingHorizontal: 16,
     paddingVertical: 8,
@@ -91,6 +96,16 @@ const stylesSheet = StyleSheet.create({
     alignItems: 'center',
     marginTop: 24,
     marginBottom: 50,
+  },
+  titleRemote: {
+    width: '90%',
+  },
+  title: {
+    height: 50,
+    color: '#ec4427',
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingLeft: 20,
   },
   imageLogo: {
     width: '40%',

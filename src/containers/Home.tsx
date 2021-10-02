@@ -15,7 +15,6 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'src/actions/usersActions';
-import { push } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import Logged from '../components/logged';
 import stylesSheet from './styles';
@@ -24,7 +23,6 @@ function Home() {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const {user} = useSelector((state: any) => state?.users);
-  console.log('chh_log ---> test', user);
   const [username, setUsername] = useState('hoanghuychhdev@gmail.com');
   const [password, setPassword] = useState('123456');
   const onSignup = () => {
@@ -129,13 +127,13 @@ function Home() {
                 />
               </LinearGradient>
               <View style={stylesSheet.wrapSocial}>
-                <TouchableOpacity style={stylesSheet.button} onPress={() => push('ATTT', {})}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => {}}>
                   <Image
                     style={{width: 70, height: 70}}
                     source={require('../../assets/icon_fb.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={stylesSheet.button} onPress={() => push('ATTT', {})}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => {}}>
                   <Image
                     style={{width: 70, height: 70}}
                     source={require('../../assets/icon_gg.png')}
