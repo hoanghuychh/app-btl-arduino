@@ -38,9 +38,20 @@ const stylesSheet = StyleSheet.create({
     width: '70%',
     marginTop: 32,
   },
+  buttonMenu: {
+    borderRadius: 100,
+    width: '70%',
+    paddingHorizontal: 30,
+    marginTop: 32,
+  },
   linearGradientBtn: {
     borderRadius: 100,
     width: '45%',
+    marginTop: 30,
+  },
+  linearGradientBtnAdd: {
+    borderRadius: 100,
+    width: '55%',
     marginTop: 30,
   },
   linearGradientBottom: {

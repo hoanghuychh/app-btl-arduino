@@ -1,13 +1,17 @@
+import auth from '@react-native-firebase/auth';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setStoreState } from 'src/actions/appActions';
+import { setUser } from 'src/actions/usersActions';
 import stylesSheet from './styles';
 
 function Settings({navigation}: {navigation: any}) {
   const {t} = useTranslation();
+  const {user} = useSelector((state: any) => state?.users);
+  console.log('chh_log ---> user', user?.uid)
   const dispatch = useDispatch();
   const setHCM = () => {
     dispatch(setStoreState({current: 'hcm'}));
@@ -17,6 +21,14 @@ function Settings({navigation}: {navigation: any}) {
     dispatch(setStoreState({current: 'hanoi'}));
     navigation.navigate('home');
   };
+  const onLogout = () => {
+    auth()
+      .signOut()
+      .then(() => {
+        dispatch(setUser({}));
+        console.log('User signed out!');
+      });
+  };
   return (
     <SafeAreaView style={stylesSheet.safeArea}>
       <ScrollView style={stylesSheet.scrollView}>
@@ -24,24 +36,49 @@ function Settings({navigation}: {navigation: any}) {
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
           </View>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={['#ec4427', '#f37e33']}
-            style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
-            <TouchableOpacity style={stylesSheet.button} onPress={() => setHN()}>
-              <Text style={stylesSheet.buttonText}>{t('TIẾNG VIỆT')}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-          <LinearGradient
-            start={{x: 0, y: 0}}
-            end={{x: 1, y: 0}}
-            colors={['#ec4427', '#f37e33']}
-            style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
-            <TouchableOpacity style={stylesSheet.button} onPress={() => setHCM()}>
-              <Text style={stylesSheet.buttonText}>{t('ENGLISH')}</Text>
-            </TouchableOpacity>
-          </LinearGradient>
+          {user?.uid !== undefined ? (
+            <View>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#ec4427', '#f37e33']}
+                style={[stylesSheet.buttonMenu, {marginVertical: 20}]}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => onLogout()}>
+                  <Text style={stylesSheet.buttonText}>{t('logout')}</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#ec4427', '#f37e33']}
+                style={[stylesSheet.buttonMenu, {marginVertical: 20}]}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => setHN()}>
+                  <Text style={stylesSheet.buttonText}>{t('selectLang')}</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </View>
+          ) : (
+            <>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#ec4427', '#f37e33']}
+                style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => setHN()}>
+                  <Text style={stylesSheet.buttonText}>{t('TIẾNG VIỆT')}</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#ec4427', '#f37e33']}
+                style={[stylesSheet.linearGradient, {marginVertical: 20}]}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => setHCM()}>
+                  <Text style={stylesSheet.buttonText}>{t('ENGLISH')}</Text>
+                </TouchableOpacity>
+              </LinearGradient>
+            </>
+          )}
           <View style={stylesSheet.wrapKmakey}>
             <Image
               style={{width: '100%', height: '100%'}}

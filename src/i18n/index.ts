@@ -66,6 +66,9 @@ const resources = {
       chooseGift: 'Chọn món quà của bạn', // edit
       login: 'Đăng nhập',
       signup: 'Đăng ký',
+      addDevice: 'Thêm thiết bị',
+      logout: 'Đăng xuất',
+      selectLang: 'Ngôn ngữ',
     },
   },
 };

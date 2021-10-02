@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc",
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start",
     "start:ios": "open ./ios/*.xcworkspace && yarn start",
     "open:ios": "open ./ios/*.xcworkspace",
     "open:android": "open -a '/Applications/Android Studio.app' android",
@@ -21,7 +21,8 @@
     "jetify": "npx jetify",
     "icon": "npx app-icon generate -i publishing/icon.png",
     "splash": "npx generate-bootsplash",
-    "pod": "cd ios && pod install && cd .."
+    "pod": "cd ios && pod install && cd ..",
+    "adb": "adb reverse tcp:8081 tcp:8081"
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
