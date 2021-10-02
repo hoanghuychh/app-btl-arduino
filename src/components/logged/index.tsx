@@ -30,6 +30,12 @@ function Logged() {
     //   });
     // console.log('chh_log ---> reference', reference);
   };
+  const onCreate = () => {
+    database().ref(`/`).push({
+      name: 'ab',
+      describe: 'ab',
+    });
+  };
   return (
     <>
       <LinearGradient
@@ -48,6 +54,15 @@ function Logged() {
         style={stylesSheet.linearGradientBtnAdd}>
         <TouchableOpacity style={stylesSheet.button} onPress={() => push('InputRemote')}>
           <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
+        </TouchableOpacity>
+      </LinearGradient>
+      <LinearGradient
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}
+        colors={['#ec4427', '#f37e33']}
+        style={stylesSheet.linearGradientBtnAdd}>
+        <TouchableOpacity style={stylesSheet.button} onPress={() => push('ListSmartRemote')}>
+          <Text style={stylesSheet.buttonText}>{t('Smart Remote')}</Text>
         </TouchableOpacity>
       </LinearGradient>
     </>

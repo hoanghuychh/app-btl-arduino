@@ -1,7 +1,7 @@
 import database from '@react-native-firebase/database';
 import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { push } from 'src/lib/NavigationService';
@@ -10,6 +10,7 @@ import stylesSheet from './styles';
 
 function ListFeatures(props: any) {
   const remoteId = props?.route?.params?.remote?.[0];
+  const remoteName = props?.route?.params?.remote?.[1]?.name;
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
   const [listFeatures, setListFeatures] = useState([]);
@@ -31,8 +32,37 @@ function ListFeatures(props: any) {
     return () =>
       database().ref(`/users/${user.uid}/remote/${remoteId}/feature`).off('value', onValueChange);
   }, [user.uid, remoteId]);
-  const onPressFeature = (el: any) => {
-    console.log('chh_logonPressFeature ---> el', el);
+  const onPressFeature = (feature: any) => {
+    database()
+      .ref(`/users/${user.uid}/notifications`)
+      .push({
+        type: 'send',
+        url: `users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}/value`,
+      });
+    Alert.alert(
+      '',
+      `Thực hiện tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}"" thành công`,
+      [{text: 'OK', onPress: () => {}}],
+    );
+    console.log('chh_logonPressFeature ---> feature', feature);
+  };
+  const deleteFeature = (feature: any) => {
+    console.log(
+      'chh_log xoa ---> feature',
+      `/users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}`,
+    );
+    database().ref(`/users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}`).remove();
+    Alert.alert(
+      '',
+      `Xoá tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}"" thành công`,
+      [{text: 'OK', onPress: () => push('Home')}],
+    );
+  };
+  const onDeleteFeature = (el: any) => {
+    Alert.alert('', `Xác nhận xoá tính năng "${el?.[1]?.name}" của thiết bị "${remoteName}"?`, [
+      {text: 'Cancel', onPress: () => console.log('chh_log ---> cancel delete')},
+      {text: 'OK', onPress: () => deleteFeature(el)},
+    ]);
   };
   return (
     <SafeAreaView style={stylesSheet.safeArea}>
@@ -58,7 +88,11 @@ function ListFeatures(props: any) {
                     end={{x: 1, y: 0}}
                     colors={['#ec4427', '#f37e33']}
                     style={stylesSheet.linearGradientBottom}>
-                    <TouchableOpacity style={stylesSheet.button} onPress={() => onPressFeature(el)}>
+                    <TouchableOpacity
+                      style={stylesSheet.button}
+                      delayLongPress={500}
+                      onLongPress={() => onDeleteFeature(el)}
+                      onPress={() => onPressFeature(el)}>
                       <Text style={stylesSheet.buttonText}>{el[1]?.name}</Text>
                     </TouchableOpacity>
                   </LinearGradient>

@@ -30,9 +30,15 @@ function InputFeature(props) {
         name: nameFeature,
         describe: describe,
       });
+      database()
+        .ref(`/users/${user.uid}/notifications`)
+        .push({
+          type: 'receive',
+          url: `users/${user.uid}/remote/${remote?.[0]}/value`,
+        });
       Alert.alert(
         '',
-        `Thêm tính năng ${nameFeature} thành công cho thiết bị ${remote?.[1]?.name}`,
+        `Thêm tính năng "${nameFeature}" thành công cho thiết bị "${remote?.[1]?.name}"`,
         [{text: 'OK', onPress: () => push('ListDevices')}],
       );
     } else {

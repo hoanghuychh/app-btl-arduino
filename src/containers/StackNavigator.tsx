@@ -2,12 +2,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import InputFeature from '../components/inputFeature';
 import InputRemote from '../components/inputRemote';
+import InputSmartRemote from '../components/inputSmartRemote';
 import ATTT from './ATTT';
 import ChooseGift from './ChooseGift';
 import Home from './Home';
 import Inevitable from './Inevitable';
 import ListDevices from './ListDevies';
 import ListFeatures from './ListFeatures';
+import ListSmartRemote from './ListSmartRemote';
 import SelectLang from './SelectLang';
 import Share from './Share';
 import Thanks from './Thanks';
@@ -21,9 +23,11 @@ const StackNavigator = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Inevitable" component={Inevitable} />
       <Stack.Screen name="ListFeatures" component={ListFeatures} />
+      <Stack.Screen name="ListSmartRemote" component={ListSmartRemote} />
       <Stack.Screen name="ATTT" component={ATTT} />
       <Stack.Screen name="InputRemote" component={InputRemote} />
       <Stack.Screen name="InputFeature" component={InputFeature} />
+      <Stack.Screen name="InputSmartRemote" component={InputSmartRemote} />
       <Stack.Screen
         name="Thanks"
         component={Thanks}
