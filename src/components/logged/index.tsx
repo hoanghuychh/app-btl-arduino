@@ -10,36 +10,20 @@ function Logged() {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const {user} = useSelector((state: any) => state?.users);
-  console.log('chh_log ---> user', user)
-  // const reference = database()
-  //   .ref('/test')
-  //   .once('value')
-  //   .then((snapshot) => {
-  //     console.log('User data: ', snapshot.val());
-  //   });
-  // console.log('chh_log ---> reference', reference);
+  console.log('chh_log ---> user', user);
 
-  const onAddUser = () => {
-    database()
-      .ref(`/users/${user.uid}`)
-      .set({
-        user_id: user.uid,
-        value: '1',
-        email: user.email,
-        displayName: user.displayName,
-        phoneNumber: user.phoneNumber,
-      })
-      .then(() => console.log('Data set.'));
-  };
   const onAddDevice = () => {
     database()
-      .ref(`/users/${user.uid}/remote/2`)
+      .ref(`/users/${user.uid}/remote/`)
       .set({
         remote_id: '2',
         value: '2',
         name: 'remote name 2',
       })
-      .then(() => console.log('Data set.'));
+      .then((e) => {
+        console.log('chh_log ---> e', e);
+        console.log('Data set.');
+      });
   };
   const onAddDevice1 = () => {
     database()
@@ -50,6 +34,13 @@ function Logged() {
         value: [1, 2, 3],
       })
       .then(() => console.log('Data set.'));
+    // const reference = database()
+    //   .ref(`/users/${user.uid}`)
+    //   .once('value')
+    //   .then((snapshot) => {
+    //     console.log('User data: ', snapshot.val());
+    //   });
+    // console.log('chh_log ---> reference', reference);
   };
   return (
     <>
@@ -69,15 +60,6 @@ function Logged() {
         style={stylesSheet.linearGradientBtnAdd}>
         <TouchableOpacity style={stylesSheet.button} onPress={onAddDevice}>
           <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
-        </TouchableOpacity>
-      </LinearGradient>
-      <LinearGradient
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 0}}
-        colors={['#ec4427', '#f37e33']}
-        style={stylesSheet.linearGradientBtnAdd}>
-        <TouchableOpacity style={stylesSheet.button} onPress={onAddUser}>
-          <Text style={stylesSheet.buttonText}>{t('add user')}</Text>
         </TouchableOpacity>
       </LinearGradient>
     </>
