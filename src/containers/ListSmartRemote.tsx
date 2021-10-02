@@ -30,8 +30,8 @@ function ListSmartRemote() {
       'chh_log xoa ---> smartRemote',
       `/users/${user.uid}/smart_remotes/${smart_remotes?.[0]}`,
     );
-    database().ref(`/users/${user.uid}/remote/${smart_remotes?.[0]}`).remove();
-    Alert.alert('', `Xoá thiết bị "${smart_remotes?.[1]?.name}" thành công`, [
+    database().ref(`/users/${user.uid}/smart_remotes/${smart_remotes?.[0]}`).remove();
+    Alert.alert('', `Xoá Smart Remote "${smart_remotes?.[1]?.name}" thành công`, [
       {text: 'OK', onPress: () => push('Home')},
     ]);
   };
