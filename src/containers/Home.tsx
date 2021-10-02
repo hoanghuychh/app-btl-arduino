@@ -129,13 +129,13 @@ function Home() {
                 />
               </LinearGradient>
               <View style={stylesSheet.wrapSocial}>
-                <TouchableOpacity style={stylesSheet.button} onPress={() => push('HavePlan', {})}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => push('ATTT', {})}>
                   <Image
                     style={{width: 70, height: 70}}
                     source={require('../../assets/icon_fb.png')}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={stylesSheet.button} onPress={() => push('HavePlan', {})}>
+                <TouchableOpacity style={stylesSheet.button} onPress={() => push('ATTT', {})}>
                   <Image
                     style={{width: 70, height: 70}}
                     source={require('../../assets/icon_gg.png')}

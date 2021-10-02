@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useDispatch } from 'react-redux';
+import { push } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import stylesSheet from './styles';
 function Logged() {
@@ -13,17 +14,11 @@ function Logged() {
   console.log('chh_log ---> user', user);
 
   const onAddDevice = () => {
-    database()
-      .ref(`/users/${user.uid}/remote/`)
-      .set({
-        remote_id: '2',
-        value: '2',
-        name: 'remote name 2',
-      })
-      .then((e) => {
-        console.log('chh_log ---> e', e);
-        console.log('Data set.');
-      });
+    database().ref(`/users/${user.uid}/remote/`).push({
+      remote_id: '4',
+      value: '4',
+      name: 'remote name 4',
+    });
   };
   const onAddDevice1 = () => {
     database()
@@ -49,8 +44,8 @@ function Logged() {
         end={{x: 1, y: 0}}
         colors={['#ec4427', '#f37e33']}
         style={stylesSheet.linearGradientBtnAdd}>
-        <TouchableOpacity style={stylesSheet.button} onPress={onAddDevice1}>
-          <Text style={stylesSheet.buttonText}>{t('add feature')}</Text>
+        <TouchableOpacity style={stylesSheet.button} onPress={() => push('ListDevices')}>
+          <Text style={stylesSheet.buttonText}>{t('listDevices')}</Text>
         </TouchableOpacity>
       </LinearGradient>
       <LinearGradient

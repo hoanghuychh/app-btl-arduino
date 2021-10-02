@@ -1,26 +1,18 @@
-import React, {memo} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import {push} from 'src/lib/NavigationService';
-import stylesSheet from './styles';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { push } from 'src/lib/NavigationService';
+import stylesSheet from './styles';
 
-function CNTT() {
+function ListFeatures() {
   const {t} = useTranslation();
   const current = useSelector((state: any) => state?.app?.current);
   return (
     <SafeAreaView style={stylesSheet.safeArea}>
       <ScrollView style={stylesSheet.scrollView}>
         <View style={stylesSheet.container}>
-          <View style={stylesSheet.wrapImage}>
-            {current === 'hanoi' && (
-              <Image style={stylesSheet.image} source={require('../../assets/game-CNTT.png')} />
-            )}
-            {current === 'hcm' && (
-              <Image style={stylesSheet.image} source={require('../../assets/game-CNTT-HCM.png')} />
-            )}
-          </View>
           <LinearGradient
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
@@ -36,4 +28,4 @@ function CNTT() {
   );
 }
 
-export default memo(CNTT);
+export default memo(ListFeatures);
