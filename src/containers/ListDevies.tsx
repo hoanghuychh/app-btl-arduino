@@ -11,15 +11,13 @@ function ListDevices() {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
   const [listDevices, setListDevices] = useState([]);
-  console.log('chh_log ---> listDevices', listDevices);
   const array: any = [];
   useEffect(() => {
     const onValueChange = database()
       .ref(`/users/${user.uid}/remote/`)
       .on('value', (snapshot) => {
         console.log('User data: ', snapshot.val());
-        Object.entries(snapshot.val()).map((e, index) => (array[index] = e));
-        console.log('chh_log ---> array', array);
+        if (snapshot.val()) Object.entries(snapshot.val()).map((e, index) => (array[index] = e));
         if (array) setListDevices(array);
       });
 
@@ -36,19 +34,29 @@ function ListDevices() {
                 console.log('chh_log ---> el');
                 return (
                   <LinearGradient
+                    key={el[0]}
                     start={{x: 0, y: 0}}
                     end={{x: 1, y: 0}}
                     colors={['#ec4427', '#f37e33']}
                     style={stylesSheet.linearGradientBottom}>
                     <TouchableOpacity
                       style={stylesSheet.button}
-                      onPress={() => push('Thanks2', {})}>
+                      onPress={() => push('ListFeatures', {remote: el})}>
                       <Text style={stylesSheet.buttonText}>{el[1]?.name}</Text>
                     </TouchableOpacity>
                   </LinearGradient>
                 );
               })
             : null}
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={['#ec4427', '#f37e33']}
+            style={stylesSheet.linearGradientBtnAdd}>
+            <TouchableOpacity style={stylesSheet.button} onPress={() => push('InputRemote')}>
+              <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         </View>
       </ScrollView>
     </SafeAreaView>

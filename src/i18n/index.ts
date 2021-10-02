@@ -67,6 +67,7 @@ const resources = {
       login: 'Đăng nhập',
       signup: 'Đăng ký',
       addDevice: 'Thêm thiết bị',
+      addFeature: 'Thêm tính năng',
       listDevices: 'Danh sách',
       logout: 'Đăng xuất',
       selectLang: 'Ngôn ngữ',

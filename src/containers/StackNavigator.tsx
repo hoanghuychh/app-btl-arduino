@@ -1,8 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import InputFeature from '../components/inputFeature';
+import InputRemote from '../components/inputRemote';
 import ATTT from './ATTT';
 import ChooseGift from './ChooseGift';
-import DTVT from './DTVT';
 import Home from './Home';
 import Inevitable from './Inevitable';
 import IntroACT from './IntroACT';
@@ -11,7 +12,6 @@ import ListFeatures from './ListFeatures';
 import Share from './Share';
 import Thanks from './Thanks';
 import ThanksIntroACT from './ThanksIntroACT';
-
 
 const Stack = createStackNavigator();
 
@@ -22,7 +22,8 @@ const StackNavigator = () => {
       <Stack.Screen name="Inevitable" component={Inevitable} />
       <Stack.Screen name="ListFeatures" component={ListFeatures} />
       <Stack.Screen name="ATTT" component={ATTT} />
-      <Stack.Screen name="DTVT" component={DTVT} />
+      <Stack.Screen name="InputRemote" component={InputRemote} />
+      <Stack.Screen name="InputFeature" component={InputFeature} />
       <Stack.Screen
         name="Thanks"
         component={Thanks}

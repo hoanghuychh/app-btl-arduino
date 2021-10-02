@@ -13,13 +13,6 @@ function Logged() {
   const {user} = useSelector((state: any) => state?.users);
   console.log('chh_log ---> user', user);
 
-  const onAddDevice = () => {
-    database().ref(`/users/${user.uid}/remote/`).push({
-      remote_id: '4',
-      value: '4',
-      name: 'remote name 4',
-    });
-  };
   const onAddDevice1 = () => {
     database()
       .ref(`/users/${user.uid}/remote/1/feature/1`)
@@ -53,7 +46,7 @@ function Logged() {
         end={{x: 1, y: 0}}
         colors={['#ec4427', '#f37e33']}
         style={stylesSheet.linearGradientBtnAdd}>
-        <TouchableOpacity style={stylesSheet.button} onPress={onAddDevice}>
+        <TouchableOpacity style={stylesSheet.button} onPress={() => push('InputRemote')}>
           <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
         </TouchableOpacity>
       </LinearGradient>
