@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from 'src/actions/usersActions';
 import { push } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
+import Logged from '../components/logged';
 import stylesSheet from './styles';
 
 function Home() {
@@ -23,8 +24,8 @@ function Home() {
   const dispatch = useDispatch();
   const {user} = useSelector((state: any) => state?.users);
   console.log('chh_log ---> test', user);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('hoanghuychhdev@gmail.com');
+  const [password, setPassword] = useState('123456');
   const onSignup = () => {
     auth()
       .createUserWithEmailAndPassword(username, password)
@@ -68,7 +69,7 @@ function Home() {
         console.error(error);
       });
   };
-  const onAddDevice = () => {};
+
   return (
     <SafeAreaView style={stylesSheet.safeArea}>
       <ScrollView style={stylesSheet.scrollView}>
@@ -77,17 +78,7 @@ function Home() {
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
           </View>
           {user?.uid !== undefined ? (
-            <>
-              <LinearGradient
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                colors={['#ec4427', '#f37e33']}
-                style={stylesSheet.linearGradientBtnAdd}>
-                <TouchableOpacity style={stylesSheet.button} onPress={onAddDevice}>
-                  <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
-                </TouchableOpacity>
-              </LinearGradient>
-            </>
+            <Logged />
           ) : (
             <>
               <LinearGradient

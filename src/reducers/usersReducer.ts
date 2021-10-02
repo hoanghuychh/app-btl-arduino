@@ -9,7 +9,7 @@ export interface UsersState {
 }
 
 const initialState: UsersState = {
-  user: {id: '10'},
+  user: {},
 };
 
 const usersReducer = createReducer<UsersState, UsersAction>(initialState)
