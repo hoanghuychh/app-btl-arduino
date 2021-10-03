@@ -3,7 +3,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { push } from 'src/lib/NavigationService';
+import { push, replace } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import TopbarBack from '../components/componentBack';
 import stylesSheet from './styles';
@@ -11,7 +11,6 @@ import stylesSheet from './styles';
 function ListDevices() {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
-  console.log('chh_log ---> user', user);
   const [listDevices, setListDevices] = useState([]);
   const array: any = [];
   useEffect(() => {
@@ -41,10 +40,9 @@ function ListDevices() {
   //   console.log('chh_log ---> result ', result);
   // };
   const deleteRemote = (remote: any) => {
-    console.log('chh_log xoa ---> remote', `/users/${user.uid}/remote/${remote?.[0]}`);
     database().ref(`/users/${user.uid}/remote/${remote?.[0]}`).remove();
     Alert.alert('', `Xoá thiết bị "${remote?.[1]?.name}" thành công`, [
-      {text: 'OK', onPress: () => push('Home')},
+      {text: 'OK', onPress: () => replace('ListDevices')},
     ]);
   };
   const onDeleteDevice = (el: any) => {
@@ -60,6 +58,9 @@ function ListDevices() {
           <TopbarBack />
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
+          </View>
+          <View style={stylesSheet.titleRemote}>
+            <Text style={stylesSheet.titleAlign}>{`Danh sách thiết bị`}</Text>
           </View>
           {listDevices
             ? listDevices.map((el: any) => {

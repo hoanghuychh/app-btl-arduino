@@ -24,6 +24,12 @@ export class NavigationService {
 export function push(name: string, params?: Record<string, unknown>) {
   navigationRef.current && navigationRef.current.dispatch(StackActions.push(name, params));
 }
+export function popToTop() {
+  navigationRef.current && navigationRef.current.dispatch(StackActions.popToTop());
+}
+export function replace(name: string, params?: Record<string, unknown>) {
+  navigationRef.current && navigationRef.current.dispatch(StackActions.replace(name, params));
+}
 export function goBack() {
   navigationRef.current && navigationRef.current.goBack();
 }

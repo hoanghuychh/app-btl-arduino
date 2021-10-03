@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
-import { push } from 'src/lib/NavigationService';
+import { push, replace } from 'src/lib/NavigationService';
 import TopbarBack from '../components/componentBack';
 import Loading from '../components/componentLoading';
 import stylesSheet from './styles';
@@ -17,20 +17,27 @@ function ListFeatures(props: any) {
   const [listFeatures, setListFeatures] = useState([]);
   const [listNotificationFeature, setListNotificationFeature] = useState([]);
   const [isLoadingFeature, setIsLoadingFeature] = useState(false);
+  const [update, setUpdate] = useState(false);
   const arrayNotification: any = [];
   const arrayFeatures: any = [];
   useEffect(() => {
+    console.log('====================================');
+    console.log('effect update feature', listFeatures);
+    console.log('====================================');
     const onValueChange = database()
       .ref(`/users/${user.uid}/remote/${remoteId}/feature`)
       .on('value', (snapshot) => {
         if (snapshot.val()) {
           Object.entries(snapshot.val()).map((e, index) => (arrayFeatures[index] = e));
+          console.log('====================================');
+          console.log('effect update feature indei', snapshot.val());
+          console.log('====================================');
         }
         if (arrayFeatures?.length > 0) setListFeatures(arrayFeatures);
       });
     return () =>
       database().ref(`/users/${user.uid}/remote/${remoteId}/feature`).off('value', onValueChange);
-  }, [user.uid, remoteId]);
+  }, [user.uid, remoteId, update]);
 
   useEffect(() => {
     const onValueChange = database()
@@ -51,6 +58,7 @@ function ListFeatures(props: any) {
   useEffect(() => {
     if (listNotificationFeature?.length <= 0 && isLoadingFeature === true) {
       setIsLoadingFeature(false);
+      setUpdate(!update);
       Alert.alert('', `Thực hiện tính năng của thiết bị "${remoteName}" thành công`, [
         {text: 'OK', onPress: () => {}},
       ]);
@@ -71,7 +79,12 @@ function ListFeatures(props: any) {
     Alert.alert(
       '',
       `Xoá tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}"" thành công`,
-      [{text: 'OK', onPress: () => push('Home')}],
+      [
+        {
+          text: 'OK',
+          onPress: () => replace('ListFeatures', {remote: props?.route?.params?.remote}),
+        },
+      ],
     );
   };
   const onDeleteFeature = (el: any) => {
@@ -90,10 +103,9 @@ function ListFeatures(props: any) {
           </View>
           <Loading isLoading={isLoadingFeature} />
           <View style={stylesSheet.titleRemote}>
+            <Text style={stylesSheet.titleAlign}>{`Tính năng của thiết bị:`}</Text>
             <Text
-              style={
-                stylesSheet.title
-              }>{`Thiết bị: ${props?.route?.params?.remote?.[1]?.name}`}</Text>
+              style={stylesSheet.titleAlign}>{`${props?.route?.params?.remote?.[1]?.name}`}</Text>
           </View>
           {listFeatures
             ? listFeatures.map((el: any) => {

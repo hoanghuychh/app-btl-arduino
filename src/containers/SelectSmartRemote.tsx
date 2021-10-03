@@ -2,7 +2,7 @@ import database from '@react-native-firebase/database';
 import React, { memo, useEffect, useState } from 'react';
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { push } from 'src/lib/NavigationService';
+import { replace } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import TopbarBack from '../components/componentBack';
 import Loading from '../components/componentLoading';
@@ -13,13 +13,13 @@ function SelectSmartRemote(props: any) {
   const describe = props?.route?.params?.describe;
   const remoteId = props?.route?.params?.remoteId;
   const remote = props?.route?.params?.remote;
+  console.log('chh_log ---> remote', remote);
   const {user} = useSelector((state: any) => state?.users);
   const [ListSmartRemote, setListSmartRemote] = useState([]);
   const [listNotification, setListNotification] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const array: any = [];
   const arraySmartRemote: any = [];
-
   useEffect(() => {
     const onValueChange = database()
       .ref(`/users/${user.uid}/smart_remotes/`)
@@ -34,6 +34,14 @@ function SelectSmartRemote(props: any) {
   const onAddFeature = (smartRemote: any) => {
     if (nameFeature) {
       setIsLoading(true);
+      setTimeout(() => {
+        if (isLoading === true) {
+          setIsLoading(false);
+          Alert.alert('Thêm thiết bị thất bại', 'Vui lòng kiểm tra lại tính năng', [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ]);
+        }
+      }, 15000);
       const featureKey = database().ref(`/users/${user.uid}/remote/${remoteId}/feature/`).push({
         name: nameFeature,
         describe: describe,
@@ -70,9 +78,11 @@ function SelectSmartRemote(props: any) {
   useEffect(() => {
     if (listNotification?.length <= 0 && isLoading === true) {
       setIsLoading(false);
-      Alert.alert('', `Thêm tính năng "${nameFeature}" thành công cho thiết bị "${remote?.name}"`, [
-        {text: 'OK', onPress: () => push('ListDevices')},
-      ]);
+      Alert.alert(
+        '',
+        `Thêm tính năng "${nameFeature}" thành công cho thiết bị "${remote?.[1]?.name}"`,
+        [{text: 'OK', onPress: () => replace('ListFeatures', {remote: remote})}],
+      );
     }
   }, [listNotification]);
   return (

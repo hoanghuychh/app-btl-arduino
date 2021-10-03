@@ -23,7 +23,7 @@ function InputFeature(props) {
       nameFeature: nameFeature,
       describe: describe,
       remoteId: remote?.[0],
-      remote: remote?.[1],
+      remote: remote,
     });
   };
   return (

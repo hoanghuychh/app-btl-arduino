@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { push } from 'src/lib/NavigationService';
+import { replace } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import TopbarBack from '../componentBack';
 import stylesSheet from './styles';
@@ -29,7 +29,7 @@ function InputSmartRemote(props) {
         name: nameSmartRemote,
       });
       Alert.alert('', `Cập nhật Smart Remote "${nameSmartRemote}" thành công!`, [
-        {text: 'OK', onPress: () => push('Home')},
+        {text: 'OK', onPress: () => replace('Home')},
       ]);
     } else {
       Alert.alert('Cập nhật Smart Remote thất bại', 'Vui lòng điền kiểm tra lại!', [

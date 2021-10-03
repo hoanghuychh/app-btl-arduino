@@ -3,7 +3,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { push } from 'src/lib/NavigationService';
+import { push, replace } from 'src/lib/NavigationService';
 import useSelector from 'src/utils/useSelector';
 import TopbarBack from '../components/componentBack';
 import stylesSheet from './styles';
@@ -30,7 +30,7 @@ function ListSmartRemote() {
     );
     database().ref(`/users/${user.uid}/smart_remotes/${smart_remotes?.[0]}`).remove();
     Alert.alert('', `Xoá Smart Remote "${smart_remotes?.[1]?.name}" thành công`, [
-      {text: 'OK', onPress: () => push('Home')},
+      {text: 'OK', onPress: () => replace('ListSmartRemote')},
     ]);
   };
   const onDeleteDevice = (el: any) => {
@@ -46,6 +46,9 @@ function ListSmartRemote() {
           <TopbarBack />
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
+          </View>
+          <View style={stylesSheet.titleRemote}>
+            <Text style={stylesSheet.titleAlign}>{`Danh sách Smart Remote`}</Text>
           </View>
           {ListSmartRemote
             ? ListSmartRemote.map((el: any) => {

@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
+import Loader from 'react-native-modal-loader';
 import stylesSheet from './styles';
 
 function Loading({isLoading}) {
@@ -7,7 +8,7 @@ function Loading({isLoading}) {
   if (isLoading)
     return (
       <View style={stylesSheet.loading}>
-        <ActivityIndicator size="large" color="#ec4427" />
+        <Loader loading={isLoading} color="#ec4427" />
       </View>
     );
   return null;
