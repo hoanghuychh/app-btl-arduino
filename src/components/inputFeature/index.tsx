@@ -26,7 +26,7 @@ function InputFeature(props) {
   const [describe, setDescribe] = useState('');
   const onAddFeature = () => {
     if (nameFeature) {
-      database().ref(`/users/${user.uid}/remote/${remote?.[0]}/feature/`).push({
+      const featureKey = database().ref(`/users/${user.uid}/remote/${remote?.[0]}/feature/`).push({
         name: nameFeature,
         describe: describe,
       });
@@ -34,7 +34,7 @@ function InputFeature(props) {
         .ref(`/users/${user.uid}/notifications`)
         .push({
           type: 'receive',
-          url: `users/${user.uid}/remote/${remote?.[0]}/value`,
+          url: `users/${user.uid}/remote/${remote?.[0]}/feature/${featureKey?.key}/value`,
         });
       Alert.alert(
         '',

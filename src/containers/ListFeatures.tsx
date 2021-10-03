@@ -41,7 +41,7 @@ function ListFeatures(props: any) {
       });
     Alert.alert(
       '',
-      `Thực hiện tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}"" thành công`,
+      `Thực hiện tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}" thành công`,
       [{text: 'OK', onPress: () => {}}],
     );
     console.log('chh_logonPressFeature ---> feature', feature);
