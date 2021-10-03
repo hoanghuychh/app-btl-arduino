@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { push } from 'src/lib/NavigationService';
 import TopbarBack from '../components/componentBack';
+import Loading from '../components/componentLoading';
 import stylesSheet from './styles';
 
 function ListFeatures(props: any) {
@@ -14,43 +15,58 @@ function ListFeatures(props: any) {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
   const [listFeatures, setListFeatures] = useState([]);
-  console.log('chh_log ---> listFeatures', listFeatures);
-  const array: any = [];
+  const [listNotificationFeature, setListNotificationFeature] = useState([]);
+  const [isLoadingFeature, setIsLoadingFeature] = useState(false);
+  const arrayNotification: any = [];
+  const arrayFeatures: any = [];
   useEffect(() => {
     const onValueChange = database()
       .ref(`/users/${user.uid}/remote/${remoteId}/feature`)
       .on('value', (snapshot) => {
-        console.log('chh_log ---> snapshot', snapshot.val());
         if (snapshot.val()) {
-          console.log('chh_log ---> snapshot.val()', snapshot.val());
-          Object.entries(snapshot.val()).map((e, index) => (array[index] = e));
+          Object.entries(snapshot.val()).map((e, index) => (arrayFeatures[index] = e));
         }
-        if (array?.length > 0) setListFeatures(array);
-        console.log('chh_log ---> array', array);
+        if (arrayFeatures?.length > 0) setListFeatures(arrayFeatures);
       });
-
     return () =>
       database().ref(`/users/${user.uid}/remote/${remoteId}/feature`).off('value', onValueChange);
   }, [user.uid, remoteId]);
+
+  useEffect(() => {
+    const onValueChange = database()
+      .ref(`/users/${user.uid}/notifications`)
+      .on('value', (snapshot) => {
+        if (snapshot.val() === null) {
+          setListNotificationFeature([]);
+        } else if (snapshot.val()) {
+          Object.entries(snapshot.val()).map((e, index) => (arrayNotification[index] = e));
+          if (arrayNotification?.length > 0) {
+            setListNotificationFeature(arrayNotification);
+          }
+        }
+      });
+    return () => database().ref(`/users/${user.uid}/notifications`).off('value', onValueChange);
+  }, [user.uid]);
+
+  useEffect(() => {
+    if (listNotificationFeature?.length <= 0 && isLoadingFeature === true) {
+      setIsLoadingFeature(false);
+      Alert.alert('', `Thực hiện tính năng của thiết bị "${remoteName}" thành công`, [
+        {text: 'OK', onPress: () => {}},
+      ]);
+    }
+  }, [listNotificationFeature]);
   const onPressFeature = (feature: any) => {
+    setIsLoadingFeature(true);
     database()
       .ref(`/users/${user.uid}/notifications`)
       .push({
         type: 'send',
         url: `users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}/value`,
+        device_id: `${feature?.[1]?.device_id}`,
       });
-    Alert.alert(
-      '',
-      `Thực hiện tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}" thành công`,
-      [{text: 'OK', onPress: () => {}}],
-    );
-    console.log('chh_logonPressFeature ---> feature', feature);
   };
   const deleteFeature = (feature: any) => {
-    console.log(
-      'chh_log xoa ---> feature',
-      `/users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}`,
-    );
     database().ref(`/users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}`).remove();
     Alert.alert(
       '',
@@ -72,6 +88,7 @@ function ListFeatures(props: any) {
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
           </View>
+          <Loading isLoading={isLoadingFeature} />
           <View style={stylesSheet.titleRemote}>
             <Text
               style={
@@ -80,7 +97,7 @@ function ListFeatures(props: any) {
           </View>
           {listFeatures
             ? listFeatures.map((el: any) => {
-                console.log('chh_log ---> el');
+                console.log('chh_log --->listFeatures: el', el?.[1]?.name);
                 return (
                   <LinearGradient
                     key={el[0]}
@@ -91,9 +108,10 @@ function ListFeatures(props: any) {
                     <TouchableOpacity
                       style={stylesSheet.button}
                       delayLongPress={500}
+                      disabled={isLoadingFeature}
                       onLongPress={() => onDeleteFeature(el)}
                       onPress={() => onPressFeature(el)}>
-                      <Text style={stylesSheet.buttonText}>{el[1]?.name}</Text>
+                      <Text style={stylesSheet.buttonText}>{el?.[1]?.name}</Text>
                     </TouchableOpacity>
                   </LinearGradient>
                 );

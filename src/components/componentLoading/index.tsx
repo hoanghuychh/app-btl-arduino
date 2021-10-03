@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from 'react-native';
 import stylesSheet from './styles';
 
 function Loading({isLoading}) {
-  console.log('chh_log ---> isLoading', isLoading);
+  console.log('chh_log ---> isLoading in loading', isLoading);
   if (isLoading)
     return (
       <View style={stylesSheet.loading}>

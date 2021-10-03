@@ -107,6 +107,14 @@ const stylesSheet = StyleSheet.create({
     fontWeight: 'bold',
     paddingLeft: 20,
   },
+  titleAlign: {
+    height: 50,
+    color: '#ec4427',
+    fontSize: 20,
+    fontWeight: 'bold',
+    paddingLeft: 20,
+    textAlign: 'center',
+  },
   imageLogo: {
     width: '40%',
     resizeMode: 'contain',

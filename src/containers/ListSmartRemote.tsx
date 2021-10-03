@@ -11,9 +11,7 @@ import stylesSheet from './styles';
 function ListSmartRemote() {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
-  console.log('chh_log ---> user', user);
   const [ListSmartRemote, setListSmartRemote] = useState([]);
-  console.log('chh_log ---> ListSmartRemote', ListSmartRemote);
   const array: any = [];
   useEffect(() => {
     const onValueChange = database()
@@ -23,7 +21,7 @@ function ListSmartRemote() {
         if (snapshot.val()) Object.entries(snapshot.val()).map((e, index) => (array[index] = e));
         if (array) setListSmartRemote(array);
       });
-    return () => database().ref(`/users/${user.uid}`).off('value', onValueChange);
+    return () => database().ref(`/users/${user.uid}/smart_remotes`).off('value', onValueChange);
   }, [user.uid]);
   const deleteSmartRemote = (smart_remotes: any) => {
     console.log(
