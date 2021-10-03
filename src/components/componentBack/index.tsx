@@ -3,7 +3,7 @@ import { Image, TouchableOpacity, View } from 'react-native';
 import stylesSheet from 'src/containers/styles';
 import { goBack } from 'src/lib/NavigationService';
 
-function TopbarBack() {
+function TopbarBack({}) {
   return (
     <View style={stylesSheet.topbar}>
       <TouchableOpacity style={stylesSheet.button} onPress={() => goBack()}>

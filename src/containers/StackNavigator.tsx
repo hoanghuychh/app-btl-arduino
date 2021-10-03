@@ -11,6 +11,7 @@ import ListDevices from './ListDevies';
 import ListFeatures from './ListFeatures';
 import ListSmartRemote from './ListSmartRemote';
 import SelectLang from './SelectLang';
+import SelectSmartRemote from './SelectSmartRemote';
 import Share from './Share';
 import Thanks from './Thanks';
 import ThanksIntroACT from './ThanksIntroACT';
@@ -24,6 +25,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Inevitable" component={Inevitable} />
       <Stack.Screen name="ListFeatures" component={ListFeatures} />
       <Stack.Screen name="ListSmartRemote" component={ListSmartRemote} />
+      <Stack.Screen name="SelectSmartRemote" component={SelectSmartRemote} />
       <Stack.Screen name="ATTT" component={ATTT} />
       <Stack.Screen name="InputRemote" component={InputRemote} />
       <Stack.Screen name="InputFeature" component={InputFeature} />
