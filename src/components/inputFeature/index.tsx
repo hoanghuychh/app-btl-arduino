@@ -1,13 +1,13 @@
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
+    Image,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { push } from 'src/lib/NavigationService';
@@ -44,7 +44,7 @@ function InputFeature(props) {
                 style={stylesSheet.input}
                 onChangeText={setNameFeature}
                 value={nameFeature}
-                placeholder="Tên tính năng"
+                placeholder="Tên chức năng"
                 placeholderTextColor="#bdc3c7"
               />
             </LinearGradient>

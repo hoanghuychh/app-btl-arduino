@@ -59,7 +59,7 @@ function ListFeatures(props: any) {
     if (listNotificationFeature?.length <= 0 && isLoadingFeature === true) {
       setIsLoadingFeature(false);
       setUpdate(!update);
-      Alert.alert('', `Thực hiện tính năng của thiết bị "${remoteName}" thành công`, [
+      Alert.alert('', `Thực hiện chức năng của Remote ảo "${remoteName}" thành công`, [
         {text: 'OK', onPress: () => {}},
       ]);
     }
@@ -78,7 +78,7 @@ function ListFeatures(props: any) {
     database().ref(`/users/${user.uid}/remote/${remoteId}/feature/${feature?.[0]}`).remove();
     Alert.alert(
       '',
-      `Xoá tính năng "${feature?.[1]?.name}" của thiết bị "${remoteName}"" thành công`,
+      `Xoá chức năng "${feature?.[1]?.name}" của Remote ảo "${remoteName}"" thành công`,
       [
         {
           text: 'OK',
@@ -88,7 +88,7 @@ function ListFeatures(props: any) {
     );
   };
   const onDeleteFeature = (el: any) => {
-    Alert.alert('', `Xác nhận xoá tính năng "${el?.[1]?.name}" của thiết bị "${remoteName}"?`, [
+    Alert.alert('', `Xác nhận xoá chức năng "${el?.[1]?.name}" của Remote ảo "${remoteName}"?`, [
       {text: 'Cancel', onPress: () => console.log('chh_log ---> cancel delete')},
       {text: 'OK', onPress: () => deleteFeature(el)},
     ]);
@@ -103,7 +103,7 @@ function ListFeatures(props: any) {
           </View>
           <Loading isLoading={isLoadingFeature} />
           <View style={stylesSheet.titleRemote}>
-            <Text style={stylesSheet.titleAlign}>{`Tính năng của thiết bị:`}</Text>
+            <Text style={stylesSheet.titleAlign}>{`Chức năng của Remote ảo:`}</Text>
             <Text
               style={stylesSheet.titleAlign}>{`${props?.route?.params?.remote?.[1]?.name}`}</Text>
           </View>

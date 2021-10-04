@@ -37,7 +37,7 @@ function SelectSmartRemote(props: any) {
       setTimeout(() => {
         if (isLoading === true) {
           setIsLoading(false);
-          Alert.alert('Thêm thiết bị thất bại', 'Vui lòng kiểm tra lại tính năng', [
+          Alert.alert('Thêm Remote ảo thất bại', 'Vui lòng kiểm tra lại chức năng', [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ]);
         }
@@ -55,7 +55,7 @@ function SelectSmartRemote(props: any) {
           device_id: smartRemote?.[0],
         });
     } else {
-      Alert.alert('Thêm thiết bị thất bại', 'Vui lòng điền tên tính năng', [
+      Alert.alert('Thêm Remote ảo thất bại', 'Vui lòng điền tên chức năng', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
     }
@@ -80,7 +80,7 @@ function SelectSmartRemote(props: any) {
       setIsLoading(false);
       Alert.alert(
         '',
-        `Thêm tính năng "${nameFeature}" thành công cho thiết bị "${remote?.[1]?.name}"`,
+        `Thêm phím chức năng "${nameFeature}" thành công cho Remote ảo "${remote?.[1]?.name}"`,
         [{text: 'OK', onPress: () => replace('ListFeatures', {remote: remote})}],
       );
     }

@@ -66,9 +66,9 @@ const resources = {
       chooseGift: 'Chọn món quà của bạn', // edit
       login: 'Đăng nhập',
       signup: 'Đăng ký',
-      addDevice: 'Thêm thiết bị',
-      addFeature: 'Thêm tính năng',
-      listDevices: 'Danh sách',
+      addDevice: 'Thêm Remote ảo',
+      addFeature: 'Thêm phím chức năng',
+      listDevices: 'Remote ảo',
       logout: 'Đăng xuất',
       selectLang: 'Ngôn ngữ',
     },

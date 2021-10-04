@@ -41,12 +41,12 @@ function ListDevices() {
   // };
   const deleteRemote = (remote: any) => {
     database().ref(`/users/${user.uid}/remote/${remote?.[0]}`).remove();
-    Alert.alert('', `Xoá thiết bị "${remote?.[1]?.name}" thành công`, [
+    Alert.alert('', `Xoá Remote ảo "${remote?.[1]?.name}" thành công`, [
       {text: 'OK', onPress: () => replace('ListDevices')},
     ]);
   };
   const onDeleteDevice = (el: any) => {
-    Alert.alert('', `Xác nhận xoá thiết bị "${el?.[1]?.name}" ?`, [
+    Alert.alert('', `Xác nhận xoá Remote ảo "${el?.[1]?.name}" ?`, [
       {text: 'Cancel', onPress: () => console.log('chh_log ---> cancel delete')},
       {text: 'OK', onPress: () => deleteRemote(el)},
     ]);
@@ -60,7 +60,7 @@ function ListDevices() {
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
           </View>
           <View style={stylesSheet.titleRemote}>
-            <Text style={stylesSheet.titleAlign}>{`Danh sách thiết bị`}</Text>
+            <Text style={stylesSheet.titleAlign}>{`Danh sách Remote ảo`}</Text>
           </View>
           {listDevices
             ? listDevices.map((el: any) => {

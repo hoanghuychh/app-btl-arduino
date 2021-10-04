@@ -2,14 +2,14 @@ import database from '@react-native-firebase/database';
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Alert,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
+    Alert,
+    Image,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { push } from 'src/lib/NavigationService';
@@ -28,11 +28,11 @@ function InputRemote() {
         name: nameRemote,
         describe: describe,
       });
-      Alert.alert('', `Thêm thiết bị "${nameRemote}" thành công`, [
+      Alert.alert('', `Thêm Remote ảo "${nameRemote}" thành công`, [
         {text: 'OK', onPress: () => push('ListDevices')},
       ]);
     } else {
-      Alert.alert('Thêm thiết bị thất bại', 'Vui lòng điền tên thiết bị', [
+      Alert.alert('Thêm Remote ảo thất bại', 'Vui lòng điền tên Remote ảo', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
     }
@@ -55,7 +55,7 @@ function InputRemote() {
                 style={stylesSheet.input}
                 onChangeText={setNameRemote}
                 value={nameRemote}
-                placeholder="Tên thiết bị"
+                placeholder="Tên Remote ảo"
                 placeholderTextColor="#bdc3c7"
               />
             </LinearGradient>
