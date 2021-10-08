@@ -133,13 +133,19 @@ function ListFeatures(props: any) {
             start={{x: 0, y: 0}}
             end={{x: 1, y: 0}}
             colors={['#ec4427', '#f37e33']}
-            style={stylesSheet.linearGradientBtnAdd}>
+            style={stylesSheet.linearGradientBtnAddFeature}>
             <TouchableOpacity
               style={stylesSheet.button}
               onPress={() => push('InputFeature', {remote: props?.route?.params?.remote})}>
               <Text style={stylesSheet.buttonText}>{t('addFeature')}</Text>
             </TouchableOpacity>
           </LinearGradient>
+          <View style={stylesSheet.wrapKmakey}>
+            <Image
+              style={{width: '100%', height: '100%'}}
+              source={require('../../assets/kmakey.png')}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

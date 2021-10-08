@@ -23,8 +23,8 @@ function Home() {
   const {t} = useTranslation();
   const dispatch = useDispatch();
   const {user} = useSelector((state: any) => state?.users);
-  const [username, setUsername] = useState('hoanghuychhdev@gmail.com');
-  const [password, setPassword] = useState('123456');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const onSignup = () => {
     auth()
       .createUserWithEmailAndPassword(username, password)

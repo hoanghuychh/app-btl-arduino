@@ -118,6 +118,12 @@ function SelectSmartRemote(props: any) {
                 );
               })
             : null}
+          <View style={stylesSheet.wrapKmakey}>
+            <Image
+              style={{width: '100%', height: '100%'}}
+              source={require('../../assets/kmakey.png')}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -56,7 +56,12 @@ const stylesSheet = StyleSheet.create({
   },
   linearGradientBtnAdd: {
     borderRadius: 100,
-    width: '55%',
+    width: '60%',
+    marginTop: 30,
+  },
+  linearGradientBtnAddFeature: {
+    borderRadius: 100,
+    width: '70%',
     marginTop: 30,
   },
   linearGradientBottom: {

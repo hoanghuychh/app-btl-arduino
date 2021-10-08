@@ -92,6 +92,12 @@ function ListDevices() {
               <Text style={stylesSheet.buttonText}>{t('addDevice')}</Text>
             </TouchableOpacity>
           </LinearGradient>
+          <View style={stylesSheet.wrapKmakey}>
+            <Image
+              style={{width: '100%', height: '100%'}}
+              source={require('../../assets/kmakey.png')}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
