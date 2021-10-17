@@ -13,13 +13,22 @@ function SelectSmartRemote(props: any) {
   const describe = props?.route?.params?.describe;
   const remoteId = props?.route?.params?.remoteId;
   const remote = props?.route?.params?.remote;
-  console.log('chh_log ---> remote', remote);
   const {user} = useSelector((state: any) => state?.users);
   const [ListSmartRemote, setListSmartRemote] = useState([]);
+  const [smartRemoteSelected, setSmartRemoteSelected] = useState(null);
   const [listNotification, setListNotification] = useState([]);
+  const [featureKeyRender, setFeatureKeyRender] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
   const array: any = [];
   const arraySmartRemote: any = [];
+  const timeOut: any = setTimeout(() => {
+    if (isLoading) {
+      setIsLoading(false);
+      Alert.alert('Thêm chức năng Remote ảo thất bại', 'Vui lòng kiểm tra lại chức năng', [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    }
+  }, 20000);
   useEffect(() => {
     const onValueChange = database()
       .ref(`/users/${user.uid}/smart_remotes/`)
@@ -31,22 +40,17 @@ function SelectSmartRemote(props: any) {
       });
     return () => database().ref(`/users/${user.uid}/smart_remotes`).off('value', onValueChange);
   }, [user.uid]);
+
   const onAddFeature = (smartRemote: any) => {
+    setSmartRemoteSelected(smartRemote);
     if (nameFeature) {
       setIsLoading(true);
-      setTimeout(() => {
-        if (isLoading === true) {
-          setIsLoading(false);
-          Alert.alert('Thêm Remote ảo thất bại', 'Vui lòng kiểm tra lại chức năng', [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ]);
-        }
-      }, 15000);
       const featureKey = database().ref(`/users/${user.uid}/remote/${remoteId}/feature/`).push({
         name: nameFeature,
         describe: describe,
         device_id: smartRemote?.[0],
       });
+      if (featureKey) setFeatureKeyRender(featureKey);
       database()
         .ref(`/users/${user.uid}/notifications`)
         .push({
@@ -55,7 +59,7 @@ function SelectSmartRemote(props: any) {
           device_id: smartRemote?.[0],
         });
     } else {
-      Alert.alert('Thêm Remote ảo thất bại', 'Vui lòng điền tên chức năng', [
+      Alert.alert('Thêm chức năng Remote ảo thất bại', 'Vui lòng điền tên chức năng', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},
       ]);
     }
@@ -81,8 +85,21 @@ function SelectSmartRemote(props: any) {
       Alert.alert(
         '',
         `Thêm phím chức năng "${nameFeature}" thành công cho Remote ảo "${remote?.[1]?.name}"`,
-        [{text: 'OK', onPress: () => replace('ListFeatures', {remote: remote})}],
+        [
+          {
+            text: 'OK',
+            onPress: () =>
+              replace('CheckFeature', {
+                remote: remote,
+                nameFeature: nameFeature,
+                smartRemote: smartRemoteSelected,
+                featureKey: featureKeyRender,
+                describe: describe,
+              }),
+          },
+        ],
       );
+      clearTimeout(timeOut);
     }
   }, [listNotification]);
   return (

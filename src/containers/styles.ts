@@ -20,6 +20,15 @@ const stylesSheet = StyleSheet.create({
     alignItems: 'center',
     display: 'flex',
   },
+  buttonSave: {
+    paddingHorizontal: 0,
+    paddingVertical: 8,
+    borderRadius: 24,
+    lineHeight: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+  },
   buttonBottom: {
     paddingHorizontal: 16,
     paddingVertical: 8,
@@ -63,6 +72,12 @@ const stylesSheet = StyleSheet.create({
     borderRadius: 100,
     width: '70%',
     marginTop: 30,
+  },
+  linearGradientBtnAddFeatureSave: {
+    borderRadius: 100,
+    width: '35%',
+    marginTop: 30,
+    marginHorizontal: 10,
   },
   linearGradientBottom: {
     borderRadius: 100,
@@ -146,8 +161,14 @@ const stylesSheet = StyleSheet.create({
   wrapSignup: {
     marginTop: 15,
   },
+  wrapForgotPw: {
+    marginTop: 0,
+  },
   textSignup: {
     color: '#ec4427',
+  },
+  wrapSave: {
+    flexDirection: 'row',
   },
 });
 

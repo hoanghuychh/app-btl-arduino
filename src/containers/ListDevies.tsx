@@ -12,6 +12,7 @@ function ListDevices() {
   const {t} = useTranslation();
   const {user} = useSelector((state: any) => state?.users);
   const [listDevices, setListDevices] = useState([]);
+  console.log('chh_log ---> listDevices', listDevices)
   const array: any = [];
   useEffect(() => {
     const onValueChange = database()
@@ -64,7 +65,6 @@ function ListDevices() {
           </View>
           {listDevices
             ? listDevices.map((el: any) => {
-                console.log('chh_log ---> el');
                 return (
                   <LinearGradient
                     key={el?.[0]}

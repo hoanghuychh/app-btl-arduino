@@ -3,7 +3,9 @@ import * as React from 'react';
 import InputFeature from '../components/inputFeature';
 import InputRemote from '../components/inputRemote';
 import InputSmartRemote from '../components/inputSmartRemote';
+import Account from './Account';
 import ATTT from './ATTT';
+import CheckFeature from './CheckFeature';
 import ChooseGift from './ChooseGift';
 import Home from './Home';
 import Inevitable from './Inevitable';
@@ -30,6 +32,8 @@ const StackNavigator = () => {
       <Stack.Screen name="InputRemote" component={InputRemote} />
       <Stack.Screen name="InputFeature" component={InputFeature} />
       <Stack.Screen name="InputSmartRemote" component={InputSmartRemote} />
+      <Stack.Screen name="CheckFeature" component={CheckFeature} />
+      <Stack.Screen name="Account" component={Account} />
       <Stack.Screen
         name="Thanks"
         component={Thanks}

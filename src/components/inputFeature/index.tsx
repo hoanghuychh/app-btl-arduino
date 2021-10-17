@@ -1,19 +1,19 @@
 import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Image,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { push } from 'src/lib/NavigationService';
 import TopbarBack from '../componentBack';
 import stylesSheet from './styles';
-function InputFeature(props) {
+function InputFeature(props: any) {
   const remote = props?.route?.params?.remote;
   const {t} = useTranslation();
   const [nameFeature, setNameFeature] = useState('');
