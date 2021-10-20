@@ -58,6 +58,13 @@ function SelectSmartRemote(props: any) {
           url: `users/${user.uid}/remote/${remoteId}/feature/${featureKey?.key}/value`,
           device_id: smartRemote?.[0],
         });
+      replace('CheckFeature', {
+        remote: remote,
+        nameFeature: nameFeature,
+        smartRemote: smartRemoteSelected,
+        featureKey: featureKeyRender,
+        describe: describe,
+      });
     } else {
       Alert.alert('Thêm chức năng Remote ảo thất bại', 'Vui lòng điền tên chức năng', [
         {text: 'OK', onPress: () => console.log('OK Pressed')},

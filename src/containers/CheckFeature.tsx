@@ -149,7 +149,7 @@ function CheckFeature(props: any) {
           <View style={stylesSheet.logo}>
             <Image style={stylesSheet.imageLogo} source={require('../../assets/logo.png')} />
           </View>
-          <Loading isLoading={isLoadingFeature} />
+          <Loading isLoading={true} />
           <View style={stylesSheet.titleRemote}>
             <Text
               style={
